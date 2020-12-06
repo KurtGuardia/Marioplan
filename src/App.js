@@ -1,10 +1,16 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Dashboard from "./components/dashboard/Dashboard";
 import Navbar from "./components/layout/Navbar";
+import ProjectDetails from "./components/projects/ProjectDetails";
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <Switch>
+        <Route path="/" exact component={Dashboard} />
+        <Route path="/project/:id" component={ProjectDetails} />
+      </Switch>
     </BrowserRouter>
   );
 }
