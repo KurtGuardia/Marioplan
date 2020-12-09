@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { createProject } from "../../store/actions/projectActions";
 
-const Createproject = () => {
+const Createproject = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const state = {
+    title: title,
+    content: content,
+  };
 
   const handleChange = (e) => {
     if (e.target.id === "title") {
@@ -14,7 +20,7 @@ const Createproject = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(title, content);
+    props.createProject(state);
   };
 
   return (
@@ -43,4 +49,10 @@ const Createproject = () => {
   );
 };
 
-export default Createproject;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createProject: (project) => dispatch(createProject(project)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Createproject);
