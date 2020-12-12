@@ -1,20 +1,21 @@
-import React from "react";
-import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { signOut } from "../../store/actions/authActions";
+import React, { Profiler } from 'react';
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { signOut } from '../../store/actions/authActions';
 
 const SignedInLinks = (props) => {
+  const { profile } = props;
   return (
-    <ul className="right">
+    <ul className='right'>
       <li>
-        <NavLink to="/create">New Project</NavLink>
+        <NavLink to='/create'>New Project</NavLink>
       </li>
       <li>
         <a onClick={props.signOut}>Log Out</a>
       </li>
       <li>
-        <NavLink to="/" className="btn btn-floating pink lighten-1">
-          KG
+        <NavLink to='/' className='btn btn-floating pink lighten-1'>
+          {profile.initials}
         </NavLink>
       </li>
     </ul>
