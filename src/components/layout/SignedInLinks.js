@@ -1,4 +1,4 @@
-import React, { Profiler } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { signOut } from '../../store/actions/authActions';
@@ -11,7 +11,7 @@ const SignedInLinks = (props) => {
         <NavLink to='/create'>New Project</NavLink>
       </li>
       <li>
-        <a onClick={props.signOut}>Log Out</a>
+        <button onClick={props.signOut}>Log Out</button>
       </li>
       <li>
         <NavLink to='/' className='btn btn-floating pink lighten-1'>

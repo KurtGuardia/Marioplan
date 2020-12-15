@@ -23,6 +23,7 @@ const store = createStore(
   )
 );
 
+// eslint-disable-next-line
 const rrfConfig = {
   userProfile: 'users',
   useFirestoreForProfile: true, // this to enable realtime sync and allow create collections
