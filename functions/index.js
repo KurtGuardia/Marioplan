@@ -8,7 +8,7 @@ const createNotificaion = ((notification) => {
     .firestore()
     .collection('notifications')
     .add(notification)
-    .then((doc) => console.log('notification added: ', doc));
+    .then((doc) => console.log('notification added'));
 });
 
 exports.projectCreated = functions.firestore
@@ -23,14 +23,19 @@ exports.projectCreated = functions.firestore
     return createNotificaion(notification);
   });
 
-  exports.userJoined = functions.auth.user().onCreate(user=>{
-      return admin.firestore().collection('users').doc(user.uid).get().then(doc => {
-          const newUser = doc.data()
-          const notification = {
-            content: 'Joined the party',
-            user: `${newUser.firstName} ${newUser.lastName}`,
-            time: admin.firestore.FieldValue.serverTimestamp()
-          };
-           return createNotificaion(notification);
-      })
-  })
+exports.userJoined = functions.auth.user().onCreate((user) => {
+  return admin
+    .firestore()
+    .collection('users')
+    .doc(user.uid)
+    .get()
+    .then((doc) => {
+      const newUser = doc.data();
+      const notification = {
+        content: 'Joined the party',
+        user: `${newUser.firstName} ${newUser.lastName}`,
+        time: admin.firestore.FieldValue.serverTimestamp(),
+      };
+      return createNotificaion(notification);
+    });
+});
