@@ -52,3 +52,9 @@ li button {
   border: none;
   cursor: pointer;
 }
+
+.container .brand-logo {
+  left: none;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
